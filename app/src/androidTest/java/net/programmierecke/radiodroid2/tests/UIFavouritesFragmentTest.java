@@ -86,7 +86,9 @@ public class UIFavouritesFragmentTest {
             "https://stackoverflow.com/questions/27992427/recyclerview-adapter-notifyitemmoved0-1-scrolls-screen")
     @Test
     public void stationInFavourites_ShouldBeReordered_WithDragAndDrop() {
-        onView(ViewMatchers.withId(R.id.nav_item_starred)).perform(ViewActions.click());
+        try {
+            onView(ViewMatchers.withId(R.id.nav_item_starred)).perform(ViewActions.click());
+        } catch (androidx.test.espresso.AmbiguousViewMatcherException avme) {}
         // 0 1 2 3 4
 
         onView(withId(R.id.recyclerViewStations)).perform(recyclerDragAndDrop(4, 0));
@@ -116,7 +118,9 @@ public class UIFavouritesFragmentTest {
 
     @Test
     public void stationInFavourites_ShouldBeReordered_WithSimpleDragAndDrop() {
-        onView(ViewMatchers.withId(R.id.nav_item_starred)).perform(ViewActions.click());
+        try {
+            onView(ViewMatchers.withId(R.id.nav_item_starred)).perform(ViewActions.click());
+        } catch (androidx.test.espresso.AmbiguousViewMatcherException avme) {}
         // 0 1
 
         onView(withId(R.id.recyclerViewStations)).perform(scrollToRecyclerItem(0));

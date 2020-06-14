@@ -83,7 +83,9 @@ public class UIHistoryFragmentTest {
 
     @Test
     public void stationsInHistory_ShouldNotBeReordered_WithDragAndDrop() {
-        onView(ViewMatchers.withId(R.id.nav_item_history)).perform(ViewActions.click());
+        try {
+            onView(ViewMatchers.withId(R.id.nav_item_history)).perform(ViewActions.click());
+        } catch (androidx.test.espresso.AmbiguousViewMatcherException avme) {}
 
         onView(withId(R.id.recyclerViewStations)).perform(scrollToRecyclerItem(0));
         onView(withId(R.id.recyclerViewStations)).perform(recyclerDragAndDrop(1, 0));
@@ -98,7 +100,9 @@ public class UIHistoryFragmentTest {
 
     @Test
     public void stationInHistory_ShouldBeDeleted_WithSwipeRight() {
-        onView(withId(R.id.nav_item_history)).perform(ViewActions.click());
+        try {
+            onView(ViewMatchers.withId(R.id.nav_item_history)).perform(ViewActions.click());
+        } catch (androidx.test.espresso.AmbiguousViewMatcherException avme) {}
 
         onView(withId(R.id.recyclerViewStations)).perform(scrollToRecyclerItem(0));
         onView(withRecyclerView(R.id.recyclerViewStations).atPosition(0)).perform(ViewActions.swipeRight());
