@@ -13,7 +13,7 @@ jobs:
     runs-on: macOS-10.15
     strategy:
       matrix:
-        api: [28]
+        api: [26, 29]
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK 1.8
