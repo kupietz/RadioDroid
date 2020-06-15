@@ -77,7 +77,7 @@ public class UILangTest {
     }
 
     @Test
-    public void application_ShouldNotCrash_WithLanguage() {
+    public void application_ShouldNotCrash_WithLanguage() throws InterruptedException {
         ViewPagerIdlingResource idlingResource = new ViewPagerIdlingResource(activityRule.getActivity().findViewById(R.id.viewpager), "ViewPager");
         IdlingRegistry.getInstance().register(idlingResource);
 
@@ -100,6 +100,8 @@ public class UILangTest {
         {
             onView(withId(R.id.nav_item_settings)).perform(ViewActions.click());
         }
+
+        Thread.sleep(500);
 
         {
             onView(withId(R.id.fragment_player_small)).perform(ViewActions.swipeUp());
