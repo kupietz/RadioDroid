@@ -1,8 +1,5 @@
 package net.programmierecke.radiodroid2.tests;
 
-import android.content.Context;
-import android.media.AudioManager;
-
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.action.ViewActions;
@@ -42,6 +39,7 @@ import static org.junit.Assert.assertNotNull;
 @SdkSuppress(minSdkVersion = 18)
 public class UINotificationTests {
 
+    public static final int TIMEOUT_MS = 7500;
     @Rule
     public ActivityTestRule<ActivityMain> activityRule
             = new ActivityTestRule<>(ActivityMain.class);
@@ -102,8 +100,8 @@ public class UINotificationTests {
         uiDevice.openNotification();
 
         String expectedAppName = ApplicationProvider.getApplicationContext().getString(R.string.app_name);
-        uiDevice.wait(Until.hasObject(By.textStartsWith(expectedAppName)), 250);
-        uiDevice.wait(Until.hasObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_resume))), 250);
+        uiDevice.wait(Until.hasObject(By.textStartsWith(expectedAppName)), TIMEOUT_MS);
+        uiDevice.wait(Until.hasObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_resume))), TIMEOUT_MS);
 
         UiObject2 resumeBtn = uiDevice.findObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_resume)));
         assertNotNull(resumeBtn);
@@ -123,8 +121,8 @@ public class UINotificationTests {
         uiDevice.openNotification();
 
         String expectedAppName = ApplicationProvider.getApplicationContext().getString(R.string.app_name);
-        uiDevice.wait(Until.hasObject(By.textStartsWith(expectedAppName)), 250);
-        uiDevice.wait(Until.hasObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_pause))), 250);
+        uiDevice.wait(Until.hasObject(By.textStartsWith(expectedAppName)), TIMEOUT_MS);
+        uiDevice.wait(Until.hasObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_pause))), TIMEOUT_MS);
 
         UiObject2 pauseBtn = uiDevice.findObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_pause)));
         assertNotNull(pauseBtn);
@@ -144,8 +142,8 @@ public class UINotificationTests {
         uiDevice.openNotification();
 
         String expectedAppName = ApplicationProvider.getApplicationContext().getString(R.string.app_name);
-        uiDevice.wait(Until.hasObject(By.textStartsWith(expectedAppName)), 250);
-        uiDevice.wait(Until.hasObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_stop))), 250);
+        uiDevice.wait(Until.hasObject(By.textStartsWith(expectedAppName)), TIMEOUT_MS);
+        uiDevice.wait(Until.hasObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_stop))), TIMEOUT_MS);
 
         UiObject2 stopBtn = uiDevice.findObject(By.desc(ApplicationProvider.getApplicationContext().getString(R.string.action_stop)));
         assertNotNull(stopBtn);
